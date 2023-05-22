@@ -1,0 +1,236 @@
+<main class="profile-page">
+  <section class="section-profile-cover section-shaped my-0">
+    <!-- Circles background -->
+    <div class="shape shape-style-1 shape-primary alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- SVG separator -->
+    <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Invoice Name</th>
+              <th>Type</th>
+              <th>Percent</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invoice of invoices">
+              <td>{{ invoice.name }}</td>
+              <td>{{ invoice.type }}</td>
+              <td>{{ invoice.percent }}</td>
+              <td>{{ invoice.amount }}</td>
+              <td>{{ invoice.date }}</td>
+              <td>{{ invoice.status }}</td>
+              <td>
+                <button (click)="markAsPaid(invoice.id)">Mark as Paid</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Upload Invoices</h4>
+          <form (ngSubmit)="uploadInvoices()">
+            <input type="file" name="invoices" multiple>
+            <button type="submit">Upload</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h4>Generate Reports</h4>
+          <select name="reportType">
+            <option value="outstandingInvoices">Outstanding Invoices</option>
+            <option value="allInvoices">All Invoices</option>
+          </select>
+          <button type="submit">Generate Report</button>
+        </div>
+
+
+
+        <!-- <table>
+          <thead>
+            <tr>
+              <th>Invoice Name</th>
+              <th>Type</th>
+              <th>Percent</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invoice of invoices">
+              <td>{{ invoice.name }}</td>
+              <td>{{ invoice.type }}</td>
+              <td>{{ invoice.percent }}</td>
+              <td>{{ invoice.amount }}</td>
+              <td>{{ invoice.date }}</td>
+              <td>{{ invoice.status }}</td>
+            </tr> -->
+
+            <!-- Total -->
+            <!-- <tr class="total">
+              <td>Total:</td> -->
+
+              <!-- Buy -->
+              <!-- <ng-container *ngIf="month.buyTotal > 0; else sell">
+                <td></td><td></td><td></td><td>+{{ month.buyTotal | currency:'USD':true:'1.2-2' }}</td><td></td>
+              </ng-container> -->
+
+              <!-- Sell -->
+              <!-- <ng-template #sell><td></td><td></td><td></td><td>-{{ month.sellTotal | currency:'USD':true:'1.2-2' }}</td><td></td></ng-template> -->
+
+              <!-- Percent -->
+              <!-- <ng-container *ngIf="month.total > 0; else zero"> -->
+                <!-- <ng-container *ngIf="month.buyTotal > 0; else sellPercent"> -->
+                  <!-- Buy Percent -->
+                  <!-- <ng-container *ngIf="month.sellTotal === 0; else bothPercent"> -->
+                    <!-- <ng-container *ngIf="(month.buyTotal / month.total) * 100 >= 0; else negative">{{ (month.buyTotal / month.total) * 100 }}%</ng-container> -->
+
+                    <!-- Negative Percent -->
+                    <!-- <ng-template #negative>-{{ (month.buyTotal / month.total) * -100 }}%</ng-template> -->
+
+                  <!-- </ng-container> -->
+
+                  <!-- Both Percent -->
+                  <!-- <ng-template #bothPercent>{{ (month.buyTotal / month.total) * 100 }}% / {{ (month.sellTotal / month.total) * 100 }}%</ng-template> -->
+
+                <!-- </ng-container> -->
+
+                <!-- Sell Percent -->
+                <!-- <ng-template #sellPercent>{{ (month.sellTotal / month.total) * 100 }}%</ng-template> -->
+
+                <!-- Zero -->
+                <!-- <ng-template #zero>0%</ng-template> -->
+
+              <!-- </ng-container> -->
+
+            <!-- </tr>
+
+          </tbody>
+
+        </table> -->
+
+
+        <!-- <form (ngSubmit)="onSubmit()">
+          <label for="invoiceName">Invoice Name:</label>
+          <input type="text" id="invoiceName" name="invoiceName" [(ngModel)]="model.invoiceName">
+
+          <label for="type">Type:</label>
+          <input type="text" id="type" name="type" [(ngModel)]="model.type">
+
+          <label for="percent">Percent:</label>
+          <input type="text" id="percent" name="percent" [(ngModel)]="model.percent">
+
+          <label for="amount">Amount:</label>
+          <input type="text" id="amount" name="amount" [(ngModel)]="model.amount">
+
+          <label for="date">Date:</label>
+          <input type="text" id="date" name="date" [(ngModel)]="model.date">
+
+          <button type="submit">Add</button>
+        </form> -->
+
+
+        <!-- <div *ngFor="let invoice of invoices">
+          <div>{{ invoice.type }}</div>
+          <div>{{ invoice.amount }}</div>
+          <div>{{ invoice.status }}</div>
+          <button (click)="markAsPaid(invoice.id)">Mark as Paid</button>
+        </div> -->
+
+        <!-- <form (submit)="addInvoice(name.value, type.value, percent.value, amount.value, date.value)">
+
+          <label for="invoiceName">Invoice Name:</label>
+          <input type="text" id="invoiceName" name="invoiceName" #name>
+
+          <label for="type">Type:</label>
+          <input type="text" id="type" name="type" #type>
+
+          <label for="percent">Percent:</label>
+          <input type="number" id="percent" name="percent" #percent>
+
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" #amount>
+
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" #date>
+
+          <label for="file">File:</label>
+          <input type="file" id="file" name="file" (change)="onFileSelected($event)">
+
+          <button type="submit">Add Invoice</button>
+        </form> -->
+        <!-- <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img src="./assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div class="card-profile-actions py-4 mt-lg-0">
+                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+                <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1">
+              <div class="card-profile-stats d-flex justify-content-center">
+                <div>
+                  <span class="heading">22</span>
+                  <span class="description">Friends</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Photos</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Comments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-5">
+            <h3>Jessica Jones
+              <span class="font-weight-light">, 27</span>
+            </h3>
+            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
+            <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer</div>
+            <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
+          </div>
+          <div class="mt-5 py-5 border-top text-center">
+            <div class="row justify-content-center">
+              <div class="col-lg-9">
+                <p>An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</p>
+                <a href="javascript:void(0)">Show more</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+</main>
